@@ -25,6 +25,7 @@ def index():
         ip_adsl = get_local_ip('p4p1')
         data = urllib.urlencode({'line':line, 'ip_adsl': ip_adsl})
         ret = urllib.urlopen(SERVER_URL, data=data).read()
+        print ret
 
 
 if __name__ == '__main__':
