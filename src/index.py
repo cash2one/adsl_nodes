@@ -12,7 +12,7 @@ from adsl2 import Adsl
 
 app = Flask(__name__)
 
-SERVER_URL = "http://192.168.27.37:8000/adsl"
+SERVER_URL = "http://adsl2.proxy.op.dajie-inc.com/adsl"
 
 
 def get_local_ip(ifname):
