@@ -54,4 +54,5 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    ip_idc = get_local_ip('eth0')
+    app.run(host=ip_idc, port=8000, debug=True)
