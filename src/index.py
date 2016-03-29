@@ -47,7 +47,7 @@ def index():
         changeupstream(ip_adsl)
         reloadservice("tinyproxy")
 
-        data = urllib.urlencode({'line': line, 'ip_idc': ip_idc, 'ip_adsl': ip_adsl})
+        data = urllib.urlencode({'line': line, 'ip_idc': ip_idc, 'ip_adsl': ip_adsl, 'status': 'new'})
         ret = urllib.urlopen(SERVER_URL, data=data).read()
 
         print ret
