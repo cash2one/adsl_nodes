@@ -30,7 +30,7 @@ def changeupstream(ip_ppp):
         f.write(newcontent)
 
 
-def reloadtinyproxy(tinyproxy):
+def reloadservice(tinyproxy):
     cmdstr = "service " + tinyproxy + " reload"
     os.system(cmdstr)
 
@@ -43,10 +43,11 @@ def index():
         adsl.reconnect()
 
         ip_adsl = get_local_ip('ppp0')
+        ip_idc = get_local_ip('eth0')
         changeupstream(ip_adsl)
-        reloadtinyproxy("tinyproxy")
+        reloadservice("tinyproxy")
 
-        data = urllib.urlencode({'line': line, 'ip_adsl': ip_adsl})
+        data = urllib.urlencode({'line': line, 'ip_idc': ip_idc, 'ip_adsl': ip_adsl})
         ret = urllib.urlopen(SERVER_URL, data=data).read()
 
         print ret
