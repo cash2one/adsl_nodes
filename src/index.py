@@ -7,7 +7,6 @@ import struct
 import urllib
 
 from flask import Flask, request
-
 from adsl2 import Adsl
 
 app = Flask(__name__)
