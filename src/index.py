@@ -11,7 +11,7 @@ from flask import Flask, request, abort
 from adsl2 import Adsl
 
 
-LOG_FILE = '/ROOT/logs/nodes/log'
+LOG_FILE = '/ROOT/logs/nodes/node.log'
 SERVER_URL = "http://adsl2.proxy.op.dajie-inc.com/adsl"
 
 FILE_HANDLE = logging.FileHandler(LOG_FILE)
