@@ -6,14 +6,14 @@ import os
 class Adsl(object):
     def connect(self):
         try:
-            cmdstr = "/sbin/ifdown ppp0"
+            cmdstr = "/sbin/pppoe-start"
             os.system(cmdstr)
         except Exception:
             pass
 
     def disconnect(self):
         try:
-            cmdstr = "/sbin/ifup ppp0"
+            cmdstr = "/sbin/pppoe-stop"
             os.system(cmdstr)
         except Exception:
             pass
