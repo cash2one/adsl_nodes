@@ -5,11 +5,11 @@ import os
 
 class Adsl(object):
     def connect(self):
-        cmdstr = "/sbin/pppoe-start"
+        cmdstr = "/sbin/ifdown ppp0"
         os.system(cmdstr)
 
     def disconnect(self):
-        cmdstr = "/sbin/pppoe-stop"
+        cmdstr = "/sbin/ifup ppp0"
         os.system(cmdstr)
 
     def reconnect(self):
