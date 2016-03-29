@@ -6,7 +6,7 @@ import socket
 import struct
 import urllib
 
-from flask import Flask, request
+from flask import Flask, request, abort
 from adsl2 import Adsl
 
 app = Flask(__name__)
@@ -51,6 +51,8 @@ def index():
         ret = urllib.urlopen(SERVER_URL, data=data).read()
 
         return ret
+    else:
+        abort(404)
 
 
 if __name__ == '__main__':
