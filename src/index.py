@@ -5,13 +5,20 @@ import os
 import socket
 import struct
 import urllib
+import logging
 
 from flask import Flask, request, abort
 from adsl2 import Adsl
 
-app = Flask(__name__)
 
+LOG_FILE = '/ROOT/logs/nodes/log'
 SERVER_URL = "http://adsl2.proxy.op.dajie-inc.com/adsl"
+
+FILE_HANDLE = logging.FileHandler(LOG_FILE)
+FILE_HANDLE.setLevel(logging.INFO)
+
+app = Flask(__name__)
+app.logger.addHandler(FILE_HANDLE)
 
 
 def get_local_ip(ifname):
@@ -57,4 +64,6 @@ def index():
 
 if __name__ == '__main__':
     ip_idc = get_local_ip('eth0')
+    if not os.path.exists(os.path.dirname(LOG_FILE)):
+        os.makedirs(os.path.dirname(LOG_FILE))
     app.run(host=ip_idc, port=8000, debug=True)
