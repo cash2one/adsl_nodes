@@ -5,12 +5,18 @@ import os
 
 class Adsl(object):
     def connect(self):
-        cmdstr = "/sbin/ifdown ppp0"
-        os.system(cmdstr)
+        try:
+            cmdstr = "/sbin/ifdown ppp0"
+            os.system(cmdstr)
+        except Exception:
+            pass
 
     def disconnect(self):
-        cmdstr = "/sbin/ifup ppp0"
-        os.system(cmdstr)
+        try:
+            cmdstr = "/sbin/ifup ppp0"
+            os.system(cmdstr)
+        except Exception:
+            pass
 
     def reconnect(self):
         self.disconnect()
