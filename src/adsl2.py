@@ -18,6 +18,11 @@ class Adsl(object):
         except Exception:
             pass
 
+    def reroute(self):
+        cmdstr = "ip route del default && ip route add default via 0.0.0.0 dev ppp0"
+        os.system(cmdstr)
+
     def reconnect(self):
         self.disconnect()
         self.connect()
+        self.reroute()
