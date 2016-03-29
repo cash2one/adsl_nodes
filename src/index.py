@@ -11,7 +11,7 @@ from adsl2 import Adsl
 
 app = Flask(__name__)
 
-SERVER_URL = "http://192.168.27.37:8000/adsl"
+SERVER_URL = "http://adsl2.proxy.op.dajie-inc.com/adsl"
 
 
 def get_local_ip(ifname):
@@ -30,7 +30,7 @@ def changeupstream(ip_ppp):
         f.write(newcontent)
 
 
-def reloadtinproxy(tinyproxy):
+def reloadtinyproxy(tinyproxy):
     cmdstr = "service " + tinyproxy + " reload"
     os.system(cmdstr)
 
@@ -44,7 +44,7 @@ def index():
 
         ip_adsl = get_local_ip('ppp0')
         changeupstream(ip_adsl)
-        reloadtinproxy("tinyproxy")
+        reloadtinyproxy("tinyproxy")
 
         data = urllib.urlencode({'line': line, 'ip_adsl': ip_adsl})
         ret = urllib.urlopen(SERVER_URL, data=data).read()
@@ -53,4 +53,5 @@ def index():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    ip_idc = get_local_ip('eth0')
+    app.run(host=ip_idc, port=8000, debug=True)
