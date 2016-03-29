@@ -42,6 +42,18 @@ def reloadservice(tinyproxy):
     os.system(cmdstr)
 
 
+def isopen(ip,port):
+    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+    try:
+        s.connect((ip,int(port)))
+        s.shutdown(2)
+        # print '%d is open' % port
+        return True
+    except:
+        # print '%d is down' % port
+        return False
+
+
 @app.route('/', methods=['POST'])
 def index():
     line = socket.gethostname()
@@ -64,6 +76,7 @@ def index():
 
 if __name__ == '__main__':
     ip_idc = get_local_ip('eth0')
+
     if not os.path.exists(os.path.dirname(LOG_FILE)):
         os.makedirs(os.path.dirname(LOG_FILE))
     app.run(host=ip_idc, port=8000, debug=True)
