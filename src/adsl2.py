@@ -7,12 +7,12 @@ class Adsl(object):
     def connect(self):
         cmdstr = "/sbin/pppoe-start"
         os.system(cmdstr)
-        time.sleep(3)
+        time.sleep(10)
 
     def disconnect(self):
         cmdstr = "/sbin/pppoe-stop"
         os.system(cmdstr)
-        time.sleep(1)
+        time.sleep(5)
 
     def reconnect(self):
         self.disconnect()
