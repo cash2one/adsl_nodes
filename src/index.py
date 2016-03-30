@@ -11,13 +11,16 @@ import time
 from flask import Flask, request, abort
 from adsl2 import Adsl
 
-
-LOG_FILE = '/ROOT/logs/nodes/node.log'
 SERVER_URL = "http://adsl2.proxy.op.dajie-inc.com/adsl"
+
+LOG_PATH = '/ROOT/logs/nodes'
+FILE_NAME = 'node-' + time.strftime('%Y-%m-%d', time.localtime())
+LOG_FILE = LOG_PATH + '/' + FILE_NAME
+
 LOCAL_PORT = 8000
 
-if not os.path.exists(os.path.dirname(LOG_FILE)):
-    os.makedirs(os.path.dirname(LOG_FILE))
+if not os.path.exists(LOG_PATH):
+    os.makedirs(LOG_PATH)
 
 FILE_HANDLE = logging.FileHandler(LOG_FILE)
 FILE_HANDLE.setLevel(logging.INFO)
