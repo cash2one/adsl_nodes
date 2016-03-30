@@ -52,10 +52,8 @@ def isopen(ip,port):
     try:
         s.connect((ip,int(port)))
         s.shutdown(2)
-        print '1'
         return True
     except:
-        print '2'
         return False
 
 
@@ -76,7 +74,7 @@ def index():
 
         tm = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
         msg = tm + '\t' + 're-dail successfully! new ip is ' + ip_adsl
-        logging.info(msg)
+        app.logger.info(msg=msg)
 
         changeupstream(ip_adsl)
         reloadservice("tinyproxy")
@@ -92,8 +90,8 @@ def index():
 if __name__ == '__main__':
     ip_idc = get_local_ip('eth0')
 
-    print '3'
-    if isopen(ip_idc, LOCAL_PORT):
-        killprocessbyport(LOCAL_PORT)
-    print '4'
+    # print '3'
+    # if isopen(ip_idc, LOCAL_PORT):
+    #     killprocessbyport(LOCAL_PORT)
+    # print '4'
     app.run(host=ip_idc, port=LOCAL_PORT, debug=True)
