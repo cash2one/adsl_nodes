@@ -73,7 +73,7 @@ def index():
         ip_idc = get_local_ip('eth0')
 
         tm = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
-        msg = tm + '\t' + 're-dail successfully! new ip is ' + ip_adsl
+        msg = tm + '\t' + line + ' re-dail successfully! new ip is ' + ip_adsl
         app.logger.info(msg=msg)
 
         changeupstream(ip_adsl)
