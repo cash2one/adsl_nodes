@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 
 import os
+import time
 
 
 class Adsl(object):
@@ -24,5 +25,6 @@ class Adsl(object):
 
     def reconnect(self):
         self.disconnect()
+        time.sleep(6)
         self.connect()
         self.reroute()
