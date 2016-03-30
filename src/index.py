@@ -93,8 +93,4 @@ def index():
 if __name__ == '__main__':
     ip_idc = get_local_ip('eth0')
 
-    # print '3'
-    # if isopen(ip_idc, LOCAL_PORT):
-    #     killprocessbyport(LOCAL_PORT)
-    # print '4'
     app.run(host=ip_idc, port=LOCAL_PORT, debug=True)
