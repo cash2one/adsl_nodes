@@ -13,6 +13,10 @@ from adsl2 import Adsl
 
 LOG_FILE = '/ROOT/logs/nodes/node.log'
 SERVER_URL = "http://adsl2.proxy.op.dajie-inc.com/adsl"
+LOCAL_PORT = 8000
+
+if not os.path.exists(os.path.dirname(LOG_FILE)):
+    os.makedirs(os.path.dirname(LOG_FILE))
 
 FILE_HANDLE = logging.FileHandler(LOG_FILE)
 FILE_HANDLE.setLevel(logging.INFO)
@@ -47,11 +51,14 @@ def isopen(ip,port):
     try:
         s.connect((ip,int(port)))
         s.shutdown(2)
-        # print '%d is open' % port
         return True
     except:
-        # print '%d is down' % port
         return False
+
+
+def killprocessbyport(port):
+    cmdstr = 'kill `lsof -i:' + str(port) + ' -t`'
+    os.system(cmdstr)
 
 
 @app.route('/', methods=['POST'])
@@ -76,7 +83,7 @@ def index():
 
 if __name__ == '__main__':
     ip_idc = get_local_ip('eth0')
+    if isopen(ip_idc, LOCAL_PORT):
+        killprocessbyport(LOCAL_PORT)
 
-    if not os.path.exists(os.path.dirname(LOG_FILE)):
-        os.makedirs(os.path.dirname(LOG_FILE))
-    app.run(host=ip_idc, port=8000, debug=True)
+    app.run(host=ip_idc, port=LOCAL_PORT, debug=True)
