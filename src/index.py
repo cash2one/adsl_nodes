@@ -11,7 +11,7 @@ import time
 from flask import Flask, request, abort
 from adsl2 import Adsl
 
-SERVER_URL = "http://adsl2.proxy.op.dajie-inc.com/adsl"
+SERVER_URL = "http://adsl2.proxy.op.dajie-inc.com/adsl/host/report"
 
 LOG_PATH = '/ROOT/logs/nodes'
 FILE_NAME = 'node-' + time.strftime('%Y-%m-%d', time.localtime()) + '.log'
