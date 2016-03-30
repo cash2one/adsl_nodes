@@ -6,6 +6,7 @@ import socket
 import struct
 import urllib
 import logging
+import time
 
 from flask import Flask, request, abort
 from adsl2 import Adsl
@@ -70,6 +71,11 @@ def index():
 
         ip_adsl = get_local_ip('ppp0')
         ip_idc = get_local_ip('eth0')
+
+        tm = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+        msg = tm + '\t' + 're-dail successfully! new ip is ' + ip_adsl
+        logging.info(msg)
+
         changeupstream(ip_adsl)
         reloadservice("tinyproxy")
 
