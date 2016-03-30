@@ -14,7 +14,7 @@ from adsl2 import Adsl
 SERVER_URL = "http://adsl2.proxy.op.dajie-inc.com/adsl"
 
 LOG_PATH = '/ROOT/logs/nodes'
-FILE_NAME = 'node-' + time.strftime('%Y-%m-%d', time.localtime())
+FILE_NAME = 'node-' + time.strftime('%Y-%m-%d', time.localtime()) + '.log'
 LOG_FILE = LOG_PATH + '/' + FILE_NAME
 
 LOCAL_PORT = 8000
@@ -50,19 +50,19 @@ def reloadservice(tinyproxy):
     os.system(cmdstr)
 
 
-def isopen(ip,port):
-    s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-    try:
-        s.connect((ip,int(port)))
-        s.shutdown(2)
-        return True
-    except:
-        return False
-
-
-def killprocessbyport(port):
-    cmdstr = 'kill `lsof -i:' + str(port) + ' -t`'
-    os.system(cmdstr)
+# def isopen(ip,port):
+#     s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+#     try:
+#         s.connect((ip,int(port)))
+#         s.shutdown(2)
+#         return True
+#     except:
+#         return False
+#
+#
+# def killprocessbyport(port):
+#     cmdstr = 'kill `lsof -i:' + str(port) + ' -t`'
+#     os.system(cmdstr)
 
 
 @app.route('/', methods=['POST'])
